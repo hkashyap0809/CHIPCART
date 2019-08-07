@@ -1,12 +1,17 @@
 package com.sonar.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity(name="logintable")
+@Entity
+@Table(schema="hr",name="logintable")
 public class Login {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int customerId;
 	private String username;
 	private String password;
