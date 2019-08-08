@@ -8,10 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.sonar.model.Cart;
 import com.sonar.model.Login;
 import com.sonar.model.Product;
+import com.sonar.service.CartServiceInterface;
+import com.sonar.service.LoginServiceInterface;
 import com.sonar.service.ProductServiceInterface;
 
 @Controller
@@ -19,6 +23,10 @@ public class ProductController {
 	
 	@Autowired
 	ProductServiceInterface productService;
+	@Autowired
+	CartServiceInterface cartService;
+	@Autowired
+	LoginServiceInterface loginService;
 	
 	@RequestMapping("/product")
 	public String productCatalog(Model model,HttpSession session)
@@ -26,17 +34,24 @@ public class ProductController {
 		model.addAttribute("product", new Product());
 	//	model.addAttribute("productList",productService.getAllProduct());
 	//  System.out.println(productService.getAllProduct());
-		session.setAttribute("productList", productService.getAllProduct());
 		return "product";
 	}
 	
-	@RequestMapping("add/{pId}")
-	public String login(@ModelAttribute("login")Login login) {
-		if(loginService.validUser(login))
-			return "productCatalog";
-		else
-			return "invalidCredentials";
+	@RequestMapping("/add/{productId}/{customerId}")
+	public String addProduct(@PathVariable("productId") int productId, @PathVariable("customerId") int customerId) {
+		if(cartService.isPresent(customerId, productId))
+		{
+			Cart cart = cartService.findByCustomerIdAndProductId(customerId, productId);
+			cart.setQuantity((cart.getQuantity()+1));
+			cartService.addToCart(cart);
+		}else {
+			Cart cart = new Cart();
+			cart.setCustomerId(customerId);
+			cart.setProductId(productId);
+			cart.setQuantity(1);
+			cartService.addToCart(cart);			
+		}	return "product";
 	}
-
+	
 	
 }

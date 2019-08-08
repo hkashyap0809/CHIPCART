@@ -11,7 +11,7 @@ public class LoginServiceImpl implements LoginServiceInterface{
 
 	@Autowired
 	LoginDAO loginDAO;
-	
+
 	@Override
 	public boolean validUser(Login login) {
 		Login correct = loginDAO.findByUsername(login.getUsername());
@@ -23,8 +23,14 @@ public class LoginServiceImpl implements LoginServiceInterface{
 
 	@Override
 	public void registerUser(Login login) {
-			loginDAO.save(login);
+		loginDAO.save(login);
 	}
 
-	
+	@Override
+	public Login getDetailsByUsername(String username) {
+		return loginDAO.findByUsername(username);
+
+	}
+
+
 }

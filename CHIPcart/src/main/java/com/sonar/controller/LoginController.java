@@ -1,5 +1,7 @@
 package com.sonar.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,9 +28,16 @@ public class LoginController {
 	}
 
 	@RequestMapping("login")
-	public String login(@ModelAttribute("login")Login login) {
+	public String login(@ModelAttribute("login")Login login , HttpSession session) {
+		Login newLogin = loginService.getDetailsByUsername(login.getUsername());
+		
 		if(loginService.validUser(login))
-			return "productCatalog";
+		{
+			session.setAttribute("loginDetails",newLogin);
+			session.setAttribute("productList", productService.getAllProduct());
+			return "product";
+		}
+			
 		else
 			return "invalidCredentials";
 	}
