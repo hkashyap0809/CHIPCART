@@ -10,5 +10,7 @@ public interface ProductServiceInterface {
 	public List<Product> getAllProduct();
 
 	public void addProduct(Product product);
+	
+	public Product productId(int id);
 
 }

@@ -8,12 +8,18 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Address Page</title>
+<style>
+body{
+background-color: rgb(37,38,43);
+font-color:white;
+}
+
+</style>
 </head>
 <body>
-<%=session.getAttribute("loginDetails")%>
-<h2>Fill the Billing Details</h2>
+<h2 align="center" style="color:white">Fill the Billing Details</h2>
 
-<table>
+<table style="color:white" align="center">
 <form:form modelAttribute="billing" action="billingDetails">
 <tr> <td> HOUSE NUMBER: </td> <td> <form:input path="houseNumber" name="houseNumber" required="required"/></td> </tr>
 <tr> <td> CITY : </td> <td> <form:input path="city" name="city" required="required" /></td> </tr>

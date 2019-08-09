@@ -28,6 +28,16 @@ public class ProductController {
 	@Autowired
 	LoginServiceInterface loginService;
 	
+	
+	@RequestMapping("/addProduct")
+	public String addProduct(@ModelAttribute("addProduct")Product product)
+	{
+		productService.addProduct(product);
+		
+		return "addProduct";
+	}
+	
+	
 	@RequestMapping("/product")
 	public String productCatalog(Model model,HttpSession session)
 	{
@@ -38,7 +48,9 @@ public class ProductController {
 	}
 	
 	@RequestMapping("/add/{productId}/{customerId}")
-	public String addProduct(@PathVariable("productId") int productId, @PathVariable("customerId") int customerId) {
+	public String addProduct(@PathVariable("productId") int productId, @PathVariable("customerId") int customerId,HttpSession session) {
+		
+		Product product= productService.productId(productId);
 		if(cartService.isPresent(customerId, productId))
 		{
 			Cart cart = cartService.findByCustomerIdAndProductId(customerId, productId);
@@ -49,6 +61,8 @@ public class ProductController {
 			cart.setCustomerId(customerId);
 			cart.setProductId(productId);
 			cart.setQuantity(1);
+			cart.setProductName(product.getProductName());
+			cart.setProductprice(product.getProductPrice());
 			cartService.addToCart(cart);			
 		}	return "product";
 	}

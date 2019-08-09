@@ -7,28 +7,51 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Welcome To ChipCart </title>
+<style>
+body{
+
+background-color: rgb(37,38,43);
+font-color:"black";
+}
+
+<table>
+<tr background-color:white>
+<td><img src="a1.jpg" align="center" length="300" width="300"></td>
+<td><h1 align="center" style="color:white;"> WELCOME TO CHIPCART</h1></td>
+</tr>
+</table>
+</style>
+
 </head>
 <body>
-<h1> WELCOME TO CHIPCART</h1>
-<div align="right">
+<table>
+<tr background-color:white>
+<td><img src="a1.jpg" align="center" length="300" width="300"></td>
+<td><h1 align="center" style="color:white;"> WELCOME TO CHIPCART</h1></td>
+</tr>
+</table>
+
+
+<br/>
+<div align="center">
 <table>
 <form:form modelAttribute="login" action="login">
-<tr> <td> USERNAME : </td> <td> <form:input type="text" path="username" required="required" /> </td></tr>
-<tr> <td> PASSWORD : </td> <td> <form:input type="password" path="password" required="required" /> </td> </tr>
-<tr> <td> <input type="submit" value="LOGIN">
+<tr> <td style="color:white;"> USERNAME : </td> <td> <form:input type="text" path="username" required="required" /> </td></tr>
+<tr> <td style="color:white;"> PASSWORD : </td> <td> <form:input type="password" path="password" required="required" /> </td> </tr>
+<tr> <td align="center"> <input type="submit" value="LOGIN">
 </form:form>
 <br/><br/>
 </table>
 <table>
-<tr><td>Not a member ? Register</td></tr> 
+<tr><td style="color:white";> Not a member ? Register</td></tr> 
 
 <form:form modelAttribute="signup" action="signup">
-<tr> <td> NAME : </td> <td> <form:input type="text" path="customerName" required="required" /> </td> </tr>
-<tr> <td> EMAIL-ID : </td> <td> <form:input type="email" path="emailId" required="required" /> </td> </tr>
-<tr> <td> USERNAME : </td> <td> <form:input type="text" path="username" required="required" /> </td></tr>
-<tr> <td> PASSWORD : </td> <td> <form:input type="password" path="password" required="required" /> </td> </tr>
-<tr> <td> <input type="submit" value="SIGN-UP"></td></tr>
+<tr> <td style="color:white;"> NAME : </td> <td> <form:input type="text" path="customerName" required="required" /> </td> </tr>
+<tr> <td style="color:white;"> EMAIL-ID : </td> <td> <form:input type="email" path="emailId" required="required" /> </td> </tr>
+<tr> <td style="color:white;"> USERNAME : </td> <td> <form:input type="text" path="username" required="required" /> </td></tr>
+<tr> <td style="color:white;"> PASSWORD : </td> <td> <form:input type="password" path="password" required="required" /> </td> </tr>
+<tr> <td align="center"> <input type="submit" value="SIGN-UP"></td></tr>
 </form:form>
 </table>
 </div>

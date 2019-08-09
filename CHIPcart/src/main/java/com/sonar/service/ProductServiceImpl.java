@@ -1,6 +1,7 @@
 package com.sonar.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,16 @@ public class ProductServiceImpl implements ProductServiceInterface{
 	@Override
 	public void addProduct(Product product) {
 		productDAO.save(product);		
+	}
+
+	@Override
+	public Product productId(int id) {
+		
+		Optional<Product> product=productDAO.findById(id);
+		if(product.isPresent())
+			return product.get();
+		else 
+			return null;
 	}
 	
 	
